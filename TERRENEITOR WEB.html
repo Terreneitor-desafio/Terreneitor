@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terreneitor: El desafío</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        
+        body {
+            background-color: #212121;
+            color: #E5D5A7;
+            font-family: 'Bangers', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background: #000000;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+                .auth-links {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-family: 'Bangers', cursive;
+        }
+        .auth-links a {
+            color: #E5D5A7;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }    
+        nav {
+            width: 100%;
+            background: #3E2723;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #E5D5A7;
+            margin: 0 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        .logo {
+            width: 200px;
+        }
+        .contador {
+            font-size: 1.5em;
+            display: inline;
+            text-align: center;
+        }
+        .contenedor {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 90%;
+        }
+        .blog, .comentarios, .btn-inscripcion {
+            margin-top: 30px;
+            background: #5D4037;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+        }
+        .comentario {
+            background: #795548;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .metodo-pago {
+            margin: 20px;
+            padding: 10px;
+            background: #3E2723;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="TERRENEITOR (3).jpg" alt="Logo de Terreneitor: El Desafío" class="logo">
+        <div style="text-align: right;">
+            <h1 style="font-size: 3em; text-transform: uppercase;">TERRENEITOR: El desafío</h1>
+            <h2 style="font-size: 2.5em;">2025</h2>
+        </div>
+    </header>
+    <nav>
+        <a href="terreneitor web.html">Inicio</a>
+        <a href="noticias.html">Noticias</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+    <section id="inicio">
+        <h2>¡Solo los más fuertes cruzarán la meta, acepta el desafío y prueba tu resistencia!</h2>
+        <p><strong>Inicia en:</strong> <span class="contador" id="contador"></span></p>
+    </section>
+    <div class="contenedor">
+        <section class="blog" id="noticias">
+            <h2>Noticias del evento</h2>
+            <p>Aquí se publicarán las últimas novedades.</p>
+            <button onclick="location.href='noticias.html'">Ver más noticias</button>
+        </section>
+        <section class="comentarios">
+            <h2>Comentarios</h2>
+            <div id="comentarios-lista"></div>
+            <input type="text" id="comentario-texto" placeholder="Escribe un comentario...">
+            <button onclick="agregarComentario()">Publicar</button>
+        </section>
+        <section class="inscripcion">
+            <html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+        }
+
+        .btn-inscripcion {
+            background-color: #ff4500;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-inscripcion:hover {
+            background-color: #e03e00;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="Inscripción.html" class="btn-inscripcion">Inscripción</a>
+
+</body>
+</html>
+        </section>
+    </div>
+    <script>
+        function actualizarContador() {
+            const eventoFecha = new Date("2025-03-12T00:00:00").getTime();
+            const ahora = new Date().getTime();
+            const diferencia = eventoFecha - ahora;
+            
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+            
+            document.getElementById("contador").innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+        }
+        setInterval(actualizarContador, 1000);
+        
+        function agregarComentario() {
+            const texto = document.getElementById("comentario-texto").value;
+            if (texto.trim() !== "") {
+                const comentarioDiv = document.createElement("div");
+                comentarioDiv.className = "comentario";
+                comentarioDiv.innerHTML = `<p>${texto}</p><button onclick="darLike(this)">👍 0</button>`;
+                document.getElementById("comentarios-lista").appendChild(comentarioDiv);
+                document.getElementById("comentario-texto").value = "";
+            }
+        }
+        function darLike(boton) {
+            let likes = parseInt(boton.innerText.split(" ")[1]) + 1;
+            boton.innerText = `👍 ${likes}`;
+        }
+    </script>
+</body>
+</html>
